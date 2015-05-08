@@ -27,6 +27,7 @@ function tableReturned()
         var RPG_elem = document.createElement( "td" );
         var TY_elem = document.createElement( "td" );
         var TR_elem = document.createElement( "td" );
+        var select_elem = document.createElement("td");
 
         name_elem.innerHTML = rows[i].Name;
         id_elem.innerHTML = rows[i].Id
@@ -35,6 +36,7 @@ function tableReturned()
         RPG_elem.innerHTML = rows[i].RedsPG
         TY_elem.innerHTML = rows[i].TotalYellows
         TR_elem.innerHTML = rows[i].TotalReds
+        select_elem.innerHTML = '<input type="checkbox" name="selection" class="selection'+[i]+'"><br>'
 
         row_elem.appendChild(name_elem)
         row_elem.appendChild(id_elem)
@@ -43,6 +45,7 @@ function tableReturned()
         row_elem.appendChild(RPG_elem)
         row_elem.appendChild(TY_elem)
         row_elem.appendChild(TR_elem)
+        row_elem.appendChild(select_elem)
 
         table_elem.appendChild(row_elem)
 
