@@ -14,7 +14,8 @@ function fillInTable()
 function tableReturned()
 {
     var rows = JSON.parse( this.responseText );
-    console.log( rows );
+    console.log( "alert3" );
+    console.log(rows)
     var table_elem = document.getElementById( "the_table" );
     for( var i = 0; i < rows.length; i++ )
     {
@@ -33,9 +34,19 @@ function tableReturned()
         YPG_elem.innerHTML = rows[i].YellowsPG
         RPG_elem.innerHTML = rows[i].RedsPG
         TY_elem.innerHTML = rows[i].TotalYellows
-        TR_elem.innerHTML = rows[i].TotalRedsha  
-        /*row_elem.appendChild( addr_elem );
-        row_elem.appendChild( nick_elem );
-        table_elem.appendChild( row_elem );*/
+        TR_elem.innerHTML = rows[i].TotalReds
+
+        row_elem.appendChild(name_elem)
+        row_elem.appendChild(id_elem)
+        row_elem.appendChild(games_elem)
+        row_elem.appendChild(YPG_elem)
+        row_elem.appendChild(RPG_elem)
+        row_elem.appendChild(TY_elem)
+        row_elem.appendChild(TR_elem)
+
+        table_elem.appendChild(row_elem)
+
+
+
     }
 }

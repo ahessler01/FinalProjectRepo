@@ -30,7 +30,7 @@ function sendBackTable( res )
             if( err === null )
             {
                 rows = r;
-                console.log(rows)
+                console.log("alert")
             }
             else
             {
@@ -44,6 +44,7 @@ function sendBackTable( res )
             if( rows !== null )
             {
                 res.end( JSON.stringify( rows ) );
+                console.log("alert2")
             }
             else
             {
