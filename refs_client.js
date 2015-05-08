@@ -28,6 +28,12 @@ function tableReturned()
         var TR_elem = document.createElement( "td" );
 
         name_elem.innerHTML = rows[i].Name;
+        id_elem.innerHTML = rows[i].Id
+        games_elem.innerHTML = rows[i].Games
+        YPG_elem.innerHTML = rows[i].YellowsPG
+        RPG_elem.innerHTML = rows[i].RedsPG
+        TY_elem.innerHTML = rows[i].TotalYellows
+        TR_elem.innerHTML = rows[i].TotalRedsha  
         /*row_elem.appendChild( addr_elem );
         row_elem.appendChild( nick_elem );
         table_elem.appendChild( row_elem );*/
