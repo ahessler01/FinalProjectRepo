@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+  function handler1( elem )
+  {
+    alert( "checkbox "+elem.id+" is "+elem.checked );
+  }
+
+  function handler2()
+  {
+    var g1 = document.getElementsByName( "group1" );
+    console.log( g1 );
+    for( var i = 0; i < g1.length; i++ )
+    {
+      console.log( g1[i].checked );
+    }
+  }
+
+  function handler3()
+  {
+    var g2 = document.getElementsByName( "group2" );
+    var url = "doSomeStuff?" + g2[0].id + "=" + g2[0].checked;
+    for( var i = 1; i < g2.length; i++ )
+    {
+      url += "&" + g2[i].id + "=" + g2[i].checked;
+    }
+    console.log( url );
+    var xhr = new XMLHttpRequest();
+    xhr.open( "get", url );
+    xhr.send();
+  }
+</script>
+<input id="cb1" name="group1" type="checkbox" onchange="handler1( this )">
+<input id="cb2" name="group1" type="checkbox">
+<input id="cb3" name="group1" type="checkbox">
+<input id="cb4" name="group1" type="checkbox">
+<input id="cb5" name="group2" type="checkbox">
+<input id="cb6" name="group2" type="checkbox">
+<input id="cb7" name="group2" type="checkbox">
+<input id="cb8" name="group2" type="checkbox">
+<input type="button" value="Click for good luck" onclick="handler2()">
+<input type="button" value="Click for fast cash" onclick="handler3()">
+</body>
+</html>
