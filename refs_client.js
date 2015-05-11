@@ -36,7 +36,7 @@ function tableReturned()
         RPG_elem.innerHTML = rows[i].RedsPG
         TY_elem.innerHTML = rows[i].TotalYellows
         TR_elem.innerHTML = rows[i].TotalReds
-        select_elem.innerHTML = '<input type="checkbox" name="selection" class="selection'+[i]+'"><br>'
+        select_elem.innerHTML = '<input type="checkbox" class="box" name="group1" id="cb'+[i]+'" value="rows'+[i]+'" checked="false"><br>'
 
         row_elem.appendChild(name_elem)
         row_elem.appendChild(id_elem)
@@ -48,8 +48,42 @@ function tableReturned()
         row_elem.appendChild(select_elem)
 
         table_elem.appendChild(row_elem)
-
-
-
     }
+}
+
+function getCheckboxValues(form) {
+  var values = [];
+  //var list = form.select;
+  var boxes = document.getElementsByClassName("box")
+  console.log(boxes)
+
+  for (var i=0; i<boxes.length; i++) {
+    if (boxes.item(i).checked) {
+      values.push(boxes.item(i).value);
+      console.log(boxes)
+    }
+  }
+  // Do something with values
+  alert("Refs " + boxes.item(0));
+  return values;
+}
+
+function getSelections()
+{
+  var g1 = document.getElementsByName( "group1" );
+  var url = "selected_refs:" + g1[0].id + "=" + g1[0].checked;
+  for( var i = 1; i < g1.length; i++ )
+  {
+    url += "&" + g1[i].id + "=" + g1[i].checked;
+  }
+  console.log( url );
+  var xhr = new XMLHttpRequest();
+  xhr.onload = displaySelections;
+  xhr.open( "get", url );
+  xhr.send();
+}
+
+function displaySelections()
+{
+  this.responseText ;
 }

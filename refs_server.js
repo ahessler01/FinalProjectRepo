@@ -54,6 +54,45 @@ function sendBackTable( res )
     );
 }
 
+function checkboxVerification(req, res)
+{
+  console.log("verify start")
+  var split_colon = req.url.split(":");
+  var split_boxes = split_colon[1].split("&");
+  console.log(split_boxes)
+  var checked_or_not = [];
+  var checked = [];
+  var unchecked = [];
+  for( var i = 0; i < split_boxes.length; i++)
+  {
+    var split_eq = split_boxes[i].split("=");
+    console.log(split_eq[1]);
+    checked_or_not.push(split_eq[1]);
+  }
+
+
+  for (var i=0; i < checked_or_not.length; i++)
+  {
+    var id
+    var checkbox_info
+
+    if(checked_or_not[i] == "true")
+    {
+      console.log("check check")
+      checked.push( checked_or_not[i] );
+    }
+    else if(checked_or_not[i] == "false"){
+      console.log("nope");
+      unchecked.push( checked_or_not[i] );
+    }
+    else{
+      console.log("somethings wrong")
+    }
+  }
+res.writeHead( 200 );
+res.end( "it worked" );
+}
+
 /*function add( req, res )
 {
     var addr_and_nick = req.url.split( "?" )[1];
@@ -88,6 +127,10 @@ function doTheServer( req, res )
     else if( req.url == "/refs_client.js" )
     {
         giveBackFile( "refs_client.js", res )
+    }
+    else if(req.url.substring(0,14) == "/selected_refs")
+    {
+      checkboxVerification(req, res)
     }
     else
     {
