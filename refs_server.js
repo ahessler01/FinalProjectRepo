@@ -61,36 +61,43 @@ function checkboxVerification(req, res)
   var split_boxes = split_colon[1].split("&");
   console.log(split_boxes)
   var checked_or_not = [];
+  var id_check = []
   var checked = [];
   var unchecked = [];
   for( var i = 0; i < split_boxes.length; i++)
   {
     var split_eq = split_boxes[i].split("=");
+    console.log(split_eq[0])
     console.log(split_eq[1]);
     checked_or_not.push(split_eq[1]);
+    id_check.push(split_eq[0])
   }
 
 
   for (var i=0; i < checked_or_not.length; i++)
   {
-    var id
+    var id =[]
     var checkbox_info
 
     if(checked_or_not[i] == "true")
     {
       console.log("check check")
-      checked.push( checked_or_not[i] );
+      checked.push( id_check[i] + "=" + checked_or_not[i] );
     }
     else if(checked_or_not[i] == "false"){
       console.log("nope");
-      unchecked.push( checked_or_not[i] );
+      unchecked.push( id_check[i] + "=" + checked_or_not[i] );
     }
     else{
       console.log("somethings wrong")
     }
   }
+  console.log(checked)
+  //console.log(checked.getElementById())
+
+
 res.writeHead( 200 );
-res.end( "it worked" );
+res.end( JSON.stringify(checked) );
 }
 
 /*function add( req, res )
