@@ -21,7 +21,6 @@ function tableReturned()
     {
         var row_elem = document.createElement( "tr" );
         var name_elem = document.createElement( "td" );
-        var id_elem = document.createElement( "td" );
         var games_elem = document.createElement( "td" );
         var YPG_elem = document.createElement( "td" );
         var RPG_elem = document.createElement( "td" );
@@ -38,7 +37,6 @@ function tableReturned()
         row_elem.TR = rows[i].TotalReds;
 
         name_elem.innerHTML = rows[i].Name;
-        id_elem.innerHTML = rows[i].Id
         games_elem.innerHTML = rows[i].Games
         YPG_elem.innerHTML = rows[i].YellowsPG
         RPG_elem.innerHTML = rows[i].RedsPG
@@ -46,7 +44,6 @@ function tableReturned()
         TR_elem.innerHTML = rows[i].TotalReds
         select_elem.innerHTML = '<input type="checkbox" class="box" name="group1" id="cb'+[i]+'" value="rows'+[i]+'" autocomplete="off"><br>'
         row_elem.appendChild(name_elem)
-        row_elem.appendChild(id_elem)
         row_elem.appendChild(games_elem)
         row_elem.appendChild(YPG_elem)
         row_elem.appendChild(RPG_elem)
