@@ -129,7 +129,7 @@ function doTheServer( req, res )
     // console.log( "doTheServer " + req.url );
     if( req.url == "/" )
     {
-      req.url = "/index.html";
+      req.url = "/refs.html";
     }
     if( req.url == "/get_table_contents" )
     {
