@@ -122,4 +122,10 @@ function doTheServer( req, res )
 }
 
 var server = http.createServer( doTheServer );
-server.listen( 8080 );
+try{
+  var port = parseInt(process.argv[2]);
+}
+catch(e){
+    var port = 8080;
+}
+server.listen( port );
