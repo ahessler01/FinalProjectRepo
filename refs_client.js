@@ -44,8 +44,7 @@ function tableReturned()
         RPG_elem.innerHTML = rows[i].RedsPG
         TY_elem.innerHTML = rows[i].TotalYellows
         TR_elem.innerHTML = rows[i].TotalReds
-        select_elem.innerHTML = '<input type="checkbox" class="box" name="group1" id="cb'+[i]+'" value="rows'+[i]+'" checked="false"><br>'
-
+        select_elem.innerHTML = '<input type="checkbox" class="box" name="group1" id="cb'+[i]+'" value="rows'+[i]+'" autocomplete="off"><br>'
         row_elem.appendChild(name_elem)
         row_elem.appendChild(id_elem)
         row_elem.appendChild(games_elem)
@@ -95,8 +94,40 @@ function displaySelections()
 {
   var display_checked = JSON.parse( this.responseText );
   var the_div = document.getElementById( "the_new_table" );
-  var comp_table = document.createElement( "table" );
-  the_div.appendChild( comp_table );
+  var comp_table = document.createElement("table")
+  var comp_head = comp_table.createTHead();
+  var comp_tbody = document.createElement("tbody")
+
+  the_div.appendChild(comp_table)
+  comp_table.appendChild(comp_head)
+  comp_table.appendChild(comp_tbody)
+
+  var name_head = document.createElement( "th");
+  name_head.innerHTML = "Name"
+  comp_head.appendChild(name_head)
+  var id_head = document.createElement("th");
+  id_head.innerHTML = "Id"
+  comp_head.appendChild(id_head)
+  var game_head = document.createElement("th");
+  game_head.innerHTML = "Games"
+  comp_head.appendChild(game_head)
+  var YPG_head = document.createElement("th");
+  YPG_head.innerHTML = "Average yellows per game";
+  comp_head.appendChild(YPG_head);
+  var RPG_head = document.createElement("th");
+  RPG_head.innerHTML = "Average reds per game";
+  comp_head.appendChild(RPG_head);
+  var TY_head = document.createElement("th");
+  TY_head.innerHTML = "Total yellows in season"
+  comp_head.appendChild(TY_head);
+  var TR_head = document.createElement("th");
+  TR_head.innerHTML = "Total reds in season";
+  comp_head.appendChild(TR_head);
+
+  comp_table.border="1"
+  comp_table.style="width:100%"
+
+
   for (var i = 0; i < display_checked.length; i++)
   {
     var split_eq2 = display_checked[i].split("=");
