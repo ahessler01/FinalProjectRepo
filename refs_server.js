@@ -103,13 +103,13 @@ res.end( JSON.stringify(checked) );
 function doTheServer( req, res )
 {
     // console.log( "doTheServer " + req.url );
+    if( req.url == "/" )
+    {
+      req.url = "/refs.html";
+    }
     if( req.url == "/get_table_contents" )
     {
         sendBackTable( res );
-    }
-    else if( req.url == "/refs_client.js" )
-    {
-        giveBackFile( "refs_client.js", res )
     }
     else if(req.url.substring(0,14) == "/selected_refs")
     {
@@ -117,7 +117,7 @@ function doTheServer( req, res )
     }
     else
     {
-        giveBackFile( "refs.html", res )
+        giveBackFile( req.url.substring( 1, req.url.length ), res )
     }
 }
 

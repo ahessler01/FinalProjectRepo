@@ -90,8 +90,14 @@ function getSelections()
   xhr.send();
 }
 
+function clearSelectionTable(the_new_table)
+{
+  var table_to_be_cleared = document.getElementById("the_new_table").innerHTML = ""
+}
+
 function displaySelections()
 {
+  clearSelectionTable(the_new_table)
   var display_checked = JSON.parse( this.responseText );
   var the_div = document.getElementById( "the_new_table" );
   var comp_table = document.createElement("table")
@@ -101,6 +107,9 @@ function displaySelections()
   the_div.appendChild(comp_table)
   comp_table.appendChild(comp_head)
   comp_table.appendChild(comp_tbody)
+
+  comp_table.border="1"
+  comp_table.style="width:100%"
 
   var name_head = document.createElement( "th");
   name_head.innerHTML = "Name"
@@ -123,10 +132,6 @@ function displaySelections()
   var TR_head = document.createElement("th");
   TR_head.innerHTML = "Total reds in season";
   comp_head.appendChild(TR_head);
-
-  comp_table.border="1"
-  comp_table.style="width:100%"
-
 
   for (var i = 0; i < display_checked.length; i++)
   {
