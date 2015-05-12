@@ -100,30 +100,6 @@ res.writeHead( 200 );
 res.end( JSON.stringify(checked) );
 }
 
-/*function add( req, res )
-{
-    var addr_and_nick = req.url.split( "?" )[1];
-    var addr_and_nick_arr = addr_and_nick.split( "&" );
-    var addr = addr_and_nick_arr[0].split( "=" )[1];
-    var nick = addr_and_nick_arr[1].split( "=" )[1];
-    var db = new sqlite.Database( "linkdb.sqlite" );
-
-    db.run( "INSERT INTO Links ('Link','Nick') VALUES ('"+
-            addr +"', '"+nick+"')",
-        function( err ) {
-            if( err !== null )
-            {
-                console.log( "Error in add" );
-                console.log( err );
-            }
-        } );
-    db.close(
-        function() {
-            res.writeHead( 200 );
-            res.end( "" );
-        } );
-}
-*/
 function doTheServer( req, res )
 {
     // console.log( "doTheServer " + req.url );
