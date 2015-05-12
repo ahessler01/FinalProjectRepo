@@ -128,4 +128,8 @@ try{
 catch(e){
     var port = 8080;
 }
+if(isNaN(port))
+{
+  port = 8080;
+}
 server.listen( port );
