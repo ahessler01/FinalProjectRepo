@@ -34,12 +34,14 @@ function tableReturned()
         yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
         yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
 
-    var margin = {top: 40, right: 10, bottom: 20, left: 20},
-        width = 960 - margin.left - margin.right,
+    var margin = {top: 50, right: 50, bottom: 50, left: 50},
+        width = 920 - margin.left - margin.right,
         height = 500 - margin.top - margin.bottom;
 
     var x = d3.scale.ordinal()
-        .domain(d3.range(0, m))
+        .domain(d3.range(m))
+        //.domain(["a","b"])
+        //.range(d3.range(m))
         .rangeRoundBands([0, width], .08);
 
     var y = d3.scale.linear()
@@ -50,8 +52,32 @@ function tableReturned()
         .domain([0, n - 1])
         .range(["#ff0", "#f00"]);
 
+    /*Martin Atkinson
+    Mark Clattenburg
+    Mike Dean
+    Phil Dowd
+    Roger East
+    Chris Foy
+    Kevin Friend
+    Mike Jones
+    Robert Madley
+    Andre Marriner
+    Lee Mason
+    Jonathan Moss
+    Michael Oliver
+    Craig Pawson
+    Lee Probert
+    Neil Swarbrick
+    Anthony Taylor
+    Howard Webb*/
+
+    //var formatAxis = d3.format("  0");
+
     var xAxis = d3.svg.axis()
-        .scale(x)
+        //.scale(x)
+        //.tickFormat(formatAxis)
+        .ticks(0)
+        //.tickValues(ref_names)
         .tickSize(0)
         .tickPadding(6)
         .orient("bottom");
@@ -63,8 +89,8 @@ function tableReturned()
         .orient("left");
 
     var svg = d3.select("body").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width + 50 + margin.left + margin.right)
+        .attr("height", height + 50 + margin.top + margin.bottom)
       .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -87,10 +113,69 @@ function tableReturned()
         .attr("y", function(d) { return y(d.y0 + d.y); })
         .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
 
+    /*svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);*/
+
     svg.append("g")
         .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);
+        .call(xAxis)
+      .selectAll("text")
+        .attr("y", 0)
+        .attr("x", 9)
+        .attr("dy", ".35em")
+        .attr("transform", "rotate(90)")
+        .style("text-anchor", "start");
+
+    svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .attr("x", width + 70)
+        .attr("y", height - 6)
+        .text("Referee name");
+
+    var ref_names = ["Martin Atkinson",
+        "Mark Clattenburg",
+        "Mike Dean",
+        "Phil Dowd",
+        "Roger East",
+        "Chris Foy",
+        "Kevin Friend",
+        "Mike Jones",
+        "Robert Madley",
+        "Andre Marriner",
+        "Lee Mason",
+        "Jonathan Moss",
+        "Michael Oliver",
+        "Craig Pawson",
+        "Lee Probert",
+        "Neil Swarbrick",
+        "Anthony Taylor",
+        "Howard Webb"]
+
+
+
+  for( var i = m-1; i >= 0; i--)
+  {
+    svg.append("text")
+        .attr("class", i + " label")
+        .attr("text-anchor", "end")
+        .attr("x", height - 50)
+        .attr("y", i*45 - (width - 30))
+        .text(ref_names[(m-i)-1])
+        .attr("transform", "rotate(90)");
+
+  }
+
+    svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .attr("x", 85)
+        .attr("y", height - 375)
+        //.attr("transform", "rotate(90)")
+        .text("Cards per game");
 
     svg.append("g")
         .attr("class", "y axis")
