@@ -93,7 +93,6 @@ function checkboxVerification(req, res)
     }
   }
   console.log(checked)
-  //console.log(checked.getElementById())
 
 
 res.writeHead( 200 );
@@ -102,7 +101,6 @@ res.end( JSON.stringify(checked) );
 
 function doTheServer( req, res )
 {
-    // console.log( "doTheServer " + req.url );
     if( req.url == "/" )
     {
       req.url = "/refs.html";

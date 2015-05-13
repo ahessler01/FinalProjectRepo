@@ -26,7 +26,7 @@ function tableReturned()
         a_y[i] = {x: i, y: yellows};
         a_r[i] = {x: i, y: reds};
     }
-    //bumpLayer(m, .1) in stack for random data
+
     var n = 2, // number of layers
         m = 18, // number of samples per layer
         stack = d3.layout.stack(),
@@ -40,8 +40,6 @@ function tableReturned()
 
     var x = d3.scale.ordinal()
         .domain(d3.range(m))
-        //.domain(["a","b"])
-        //.range(d3.range(m))
         .rangeRoundBands([0, width], .08);
 
     var y = d3.scale.linear()
@@ -52,32 +50,9 @@ function tableReturned()
         .domain([0, n - 1])
         .range(["#ff0", "#f00"]);
 
-    /*Martin Atkinson
-    Mark Clattenburg
-    Mike Dean
-    Phil Dowd
-    Roger East
-    Chris Foy
-    Kevin Friend
-    Mike Jones
-    Robert Madley
-    Andre Marriner
-    Lee Mason
-    Jonathan Moss
-    Michael Oliver
-    Craig Pawson
-    Lee Probert
-    Neil Swarbrick
-    Anthony Taylor
-    Howard Webb*/
-
-    //var formatAxis = d3.format("  0");
-
     var xAxis = d3.svg.axis()
-        //.scale(x)
-        //.tickFormat(formatAxis)
         .ticks(0)
-        //.tickValues(ref_names)
+        .tickValues(ref_names)
         .tickSize(0)
         .tickPadding(6)
         .orient("bottom");
@@ -112,11 +87,6 @@ function tableReturned()
         .delay(function(d, i) { return i * 10; })
         .attr("y", function(d) { return y(d.y0 + d.y); })
         .attr("height", function(d) { return y(d.y0) - y(d.y0 + d.y); });
-
-    /*svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis);*/
 
     svg.append("g")
         .attr("class", "x axis")
@@ -219,26 +189,4 @@ function tableReturned()
           .attr("x", function(d) { return x(d.x); })
           .attr("width", x.rangeBand());
     }
-}
-
-
-// Inspired by Lee Byron's test data generator.
-//replace random with hardcoded numbers
-function bumpLayer(n, o) {
-
-  function bump(a) {
-    var x = 1 / (.1 + .5),
-        y = 2 * .5 - .5,
-        z = 10 / (.1 + 0.5);
-    for (var i = 0; i < n; i++) {
-      var w = (i / n - y) * z;
-      a[i] += x * Math.exp(-w * w);
-    }
-  }
-
-  var a = [], i;
-  for (i = 0; i < n; ++i) a[i] = {x: i, y: i};//o + o; //* Math.random();
-  //for (i = 0; i < 5; ++i) bump(a);
-  //return a.map(function(d, i) { return {x: i, y: Math.max(0, d)}; });
-  return a;
 }

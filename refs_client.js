@@ -57,7 +57,6 @@ function tableReturned()
 
 function getCheckboxValues(form) {
   var values = [];
-  //var list = form.select;
   var boxes = document.getElementsByClassName("box")
   console.log(boxes)
 
