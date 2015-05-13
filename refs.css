@@ -1,3 +1,13 @@
 body {
-    background-image: url("soccer-fields.jpg");
+    background-image: url("http://www.gladstonesoccer.com/images/soccer_field.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
+
+
+#the_table{
+
+}
+
+th {text-decoration: underline;}
